@@ -59,3 +59,43 @@ For the latest version please see https://github.com/mattn/vim-gist.
 
 - Fork the gist (you need to have opened the gist buffer first).
   Password authentication is needed.
+
+        :Gist -f
+
+- Star the gist (you need to have opened the gist buffer first).
+  Password authentication is needed.
+
+        :Gist +1
+
+- Unstar the gist (you need to have opened the gist buffer first).
+  Password authentication is needed.
+
+        :Gist -1
+
+- Get gist XXXXX.
+
+        :Gist XXXXX
+
+- Get gist XXXXX and add to clipboard.
+
+        :Gist -c XXXXX
+
+- List your public gists.
+
+        :Gist -l
+
+- List gists from user "mattn".
+
+        :Gist -l mattn
+
+- Specify the number of gists listed:
+
+        :Gist -l -n 100
+
+- List everyone's gists.
+
+        :Gist -la
+
+- List gists from your starred gists.
+
+        :Gist -ls
