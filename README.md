@@ -99,3 +99,28 @@ For the latest version please see https://github.com/mattn/vim-gist.
 - List gists from your starred gists.
 
         :Gist -ls
+
+- Open the gist on browser after you post or update it.
+
+        :Gist -b
+
+## List Feature
+
+- Useful mappings on the gist-listing buffer:
+    - Both `o` or `Enter` open the gist file in a new buffer, and close the
+      vim-gist listing one.
+    - `b` opens the gist file in a browser; this is necessary because
+      `Shift-Enter` (as was originally) only works for GUI vim.
+    - `y` copies the contents of the selected gist to the clipboard, and
+      closes the vim-gist buffer.
+    - `p` pastes the contents of the selected gist to the buffer from where
+      vim-gist was called, and closes the vim-gist buffer.
+    - Hitting `Escape` or `Tab` at the vim-gist buffer closes it.
+
+- Gist listing has fixed-length columns now, more amenable to eye inspection.
+  Every line on the gist-listing buffer contains the gist id, name and
+  description, in that order. Columns are now padded and truncated to offer a
+  faster browsing, in the following way:
+  - The gist id string is fixed at 32 characters.
+  - The length (in characters) of the name of the gist is fixed and
+    can be set by the user using, for example:
