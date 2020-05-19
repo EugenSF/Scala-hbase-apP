@@ -124,3 +124,45 @@ For the latest version please see https://github.com/mattn/vim-gist.
   - The gist id string is fixed at 32 characters.
   - The length (in characters) of the name of the gist is fixed and
     can be set by the user using, for example:
+
+    `let g:gistvim_namelength = 20`
+
+    The default value for `gistvim_namelength` is 30. If the gist (file)name
+    exceeds that length, it is truncated to the specified length.
+  - Finally, the gist description is truncated in length to fit the remaining
+    of the line, avoiding wrapped lines that mess up the table layout.
+  - Note that the gist listing buffer now does not show the field 'code'
+    (not sure what that did in the first place).
+
+## Tips:
+
+If you set g:gist_clip_command, gist.vim will copy the gist code with option
+'-c'.
+
+- Mac:
+
+        let g:gist_clip_command = 'pbcopy'
+
+- Linux:
+
+        let g:gist_clip_command = 'xclip -selection clipboard'
+
+- Others (cygwin?):
+
+        let g:gist_clip_command = 'putclip'
+
+If you want to detect filetype from the filename:
+
+    let g:gist_detect_filetype = 1
+
+If you want to open browser after the post:
+
+    let g:gist_open_browser_after_post = 1
+
+If you want to change the browser:
+
+    let g:gist_browser_command = 'w3m %URL%'
+
+or:
+
+    let g:gist_browser_command = 'opera %URL% &'
