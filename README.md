@@ -166,3 +166,43 @@ If you want to change the browser:
 or:
 
     let g:gist_browser_command = 'opera %URL% &'
+
+On windows, this should work with your user settings.
+
+If you want to show your private gists with ":Gist -l":
+
+    let g:gist_show_privates = 1
+
+If you want your gist to be private by default:
+
+    let g:gist_post_private = 1
+
+If you want your gist to be anonymous by default:
+
+    let g:gist_post_anonymous = 1
+
+If you want to manipulate multiple files in a gist:
+
+    let g:gist_get_multiplefile = 1
+
+If you want to use on GitHub Enterprise:
+
+    let g:gist_api_url = 'http://your-github-enterprise-domain/api/v3'
+
+You need to either set global git config:
+
+	$ git config --global github.user Username
+
+If you want to list more than 30 gists per page (maximum is 100):
+
+    let g:gist_per_page_limit = 100
+
+## License:
+
+    Copyright 2010 by Yasuhiro Matsumoto
+    modification, are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
