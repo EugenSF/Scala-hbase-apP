@@ -247,3 +247,44 @@ Add the following lines to your `.vimrc`.
 
     Bundle 'mattn/webapi-vim'
     Bundle 'mattn/vim-gist'
+
+Now restart Vim and run `:BundleInstall`.
+
+### Install with [NeoBundle](https://github.com/Shougo/neobundle.vim)
+
+Add the following line to your `.vimrc`.
+
+    NeoBundle 'mattn/vim-gist', {'depends': 'mattn/webapi-vim'}
+
+## Requirements:
+
+- curl command (http://curl.haxx.se/)
+- webapi-vim (https://github.com/mattn/webapi-vim)
+- and if you want to use your git profile, the git command-line client.
+
+## Setup:
+
+This plugin supports both basic and two-factor authentication using GitHub
+API v3. The plugin stores its credentials in `~/.gist-vim`.
+
+First, you need to set your GitHub username in git's global configuration:
+
+    $ git config --global github.user <username>
+
+Then vim-gist will ask for your password in order to create an access
+token. If you have two-factor authentication enabled, vim-gist will also
+prompt you to enter the two-factor key you receive.
+
+NOTE:
+If you want you can set it directly to `g:github_user` and `g:gist_token`.
+
+Whichever type of authentication you use, your GitHub password will not be
+stored, only a OAuth access token produced specifically for vim-gist. The
+token is stored in `~/.gist-vim`. If you stop using the plugin, you can
+easily remove this file. To revoke the associated  GitHub token, go to the
+list of ["Authorized applications" on GitHub's "Account Settings"
+page][uas].
+
+[uas]: https://github.com/settings/applications
+
+**Note:** the username is optional if you only send anonymous gists.
