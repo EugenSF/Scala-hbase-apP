@@ -84,3 +84,44 @@ function! s:get_browser_command() abort
       let gist_browser_command = 'firefox %URL% &'
     else
       let gist_browser_command = ''
+    endif
+  endif
+  return gist_browser_command
+endfunction
+
+function! s:open_browser(url) abort
+  let cmd = s:get_browser_command()
+  if len(cmd) == 0
+    redraw
+    echohl WarningMsg
+    echo 'It seems that you don''t have general web browser. Open URL below.'
+    echohl None
+    echo a:url
+    return
+  endif
+  let quote = &shellxquote == '"' ?  "'" : '"'
+  if cmd =~# '^!'
+    let cmd = substitute(cmd, '%URL%', '\=quote.a:url.quote', 'g')
+    silent! exec cmd
+  elseif cmd =~# '^:[A-Z]'
+    let cmd = substitute(cmd, '%URL%', '\=a:url', 'g')
+    exec cmd
+  else
+    let cmd = substitute(cmd, '%URL%', '\=quote.a:url.quote', 'g')
+    call system(cmd)
+  endif
+endfunction
+
+function! s:shellwords(str) abort
+  let words = split(a:str, '\%(\([^ \t\''"]\+\)\|''\([^\'']*\)''\|"\(\%([^\"\\]\|\\.\)*\)"\)\zs\s*\ze')
+  let words = map(words, 'substitute(v:val, ''\\\([\\ ]\)'', ''\1'', "g")')
+  let words = map(words, 'matchstr(v:val, ''^\%\("\zs\(.*\)\ze"\|''''\zs\(.*\)\ze''''\|.*\)$'')')
+  return words
+endfunction
+
+function! s:truncate(str, num)
+  let mx_first = '^\(.\)\(.*\)$'
+  let str = a:str
+  let ret = ''
+  let width = 0
+  while 1
