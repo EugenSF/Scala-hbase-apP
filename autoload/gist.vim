@@ -125,3 +125,47 @@ function! s:truncate(str, num)
   let ret = ''
   let width = 0
   while 1
+    let char = substitute(str, mx_first, '\1', '')
+    let cells = strdisplaywidth(char)
+    if cells == 0 || width + cells > a:num
+      break
+    endif
+    let width = width + cells
+    let ret .= char
+    let str = substitute(str, mx_first, '\2', '')
+  endwhile
+  while width + 1 <= a:num
+    let ret .= ' '
+    let width = width + 1
+  endwhile
+  return ret
+endfunction
+
+function! s:format_gist(gist) abort
+  let files = sort(keys(a:gist.files))
+  if empty(files)
+    return ''
+  endif
+  let file = a:gist.files[files[0]]
+  let name = file.filename
+  if has_key(file, 'content')
+    let code = file.content
+    let code = "\n".join(map(split(code, "\n"), '"  ".v:val'), "\n")
+  else
+    let code = ''
+  endif
+  let desc = type(a:gist.description)==0 || a:gist.description ==# '' ? '' : a:gist.description
+  let name = substitute(name, '[\r\n\t]', ' ', 'g')
+  let name = substitute(name, '  ', ' ', 'g')
+  let desc = substitute(desc, '[\r\n\t]', ' ', 'g')
+  let desc = substitute(desc, '  ', ' ', 'g')
+  " Display a nice formatted (and truncated if needed) table of gists on screen
+  " Calculate field lengths for gist-listing formatting on screen
+  redir =>a |exe 'sil sign place buffer='.bufnr('')|redir end
+  let signlist = split(a, '\n')
+  let width = winwidth(0) - ((&number||&relativenumber) ? &numberwidth : 0) - &foldcolumn - (len(signlist) > 2 ? 2 : 0)
+  let idlen = 33
+  let namelen = get(g:, 'gist_namelength', 30)
+  let desclen = width - (idlen + namelen + 10)
+  return printf('gist: %s %s %s', s:truncate(a:gist.id, idlen), s:truncate(name, namelen), s:truncate(desc, desclen))
+endfunction
