@@ -208,3 +208,55 @@ function! s:GistList(gistls, page, pagelimit) abort
   let old_undolevels = &undolevels
   let oldlines = []
   silent %d _
+
+  redraw | echon 'Listing gists... '
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    bw!
+    redraw
+    echohl ErrorMsg | echomsg v:errmsg | echohl None
+    return
+  endif
+  let res = webapi#http#get(url, '', { 'Authorization': auth })
+  if v:shell_error != 0
+    bw!
+    redraw
+    echohl ErrorMsg | echomsg 'Gists not found' | echohl None
+    return
+  endif
+  let content = webapi#json#decode(res.content)
+  if type(content) == 4 && has_key(content, 'message') && len(content.message)
+    bw!
+    redraw
+    echohl ErrorMsg | echomsg content.message | echohl None
+    if content.message ==# 'Bad credentials'
+      call delete(s:gist_token_file)
+    endif
+    return
+  endif
+
+  let lines = map(filter(content, '!empty(v:val.files)'), 's:format_gist(v:val)')
+  call setline(1, split(join(lines, "\n"), "\n"))
+
+  $put='more...'
+
+  let b:gistls = a:gistls
+  let b:page = a:page
+  setlocal buftype=nofile bufhidden=hide noswapfile
+  setlocal cursorline
+  setlocal nomodified
+  setlocal nomodifiable
+  syntax match SpecialKey /^gist:/he=e-1
+  syntax match Title /^gist: \S\+/hs=s+5 contains=ALL
+  nnoremap <silent> <buffer> <cr> :call <SID>GistListAction(0)<cr>
+  nnoremap <silent> <buffer> o :call <SID>GistListAction(0)<cr>
+  nnoremap <silent> <buffer> b :call <SID>GistListAction(1)<cr>
+  nnoremap <silent> <buffer> y :call <SID>GistListAction(2)<cr>
+  nnoremap <silent> <buffer> p :call <SID>GistListAction(3)<cr>
+  nnoremap <silent> <buffer> <esc> :bw<cr>
+  nnoremap <silent> <buffer> <s-cr> :call <SID>GistListAction(1)<cr>
+
+  cal cursor(1+len(oldlines),1)
+  nohlsearch
+  redraw | echo ''
+endfunction
