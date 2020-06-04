@@ -169,3 +169,42 @@ function! s:format_gist(gist) abort
   let desclen = width - (idlen + namelen + 10)
   return printf('gist: %s %s %s', s:truncate(a:gist.id, idlen), s:truncate(name, namelen), s:truncate(desc, desclen))
 endfunction
+
+" Note: A colon in the file name has side effects on Windows due to NTFS Alternate Data Streams; avoid it.
+let s:bufprefix = 'gist' . (has('unix') ? ':' : '_')
+function! s:GistList(gistls, page, pagelimit) abort
+  if a:gistls ==# '-all'
+    let url = g:gist_api_url.'gists/public'
+  elseif get(g:, 'gist_show_privates', 0) && a:gistls ==# 'starred'
+    let url = g:gist_api_url.'gists/starred'
+  elseif get(g:, 'gist_show_privates') && a:gistls ==# 'mine'
+    let url = g:gist_api_url.'gists'
+  else
+    let url = g:gist_api_url.'users/'.a:gistls.'/gists'
+  endif
+  let winnum = bufwinnr(bufnr(s:bufprefix.a:gistls))
+  if winnum != -1
+    if winnum != bufwinnr('%')
+      exe winnum 'wincmd w'
+    endif
+    setlocal modifiable
+  else
+    if get(g:, 'gist_list_vsplit', 0)
+      exec 'silent noautocmd vsplit +set\ winfixwidth ' s:bufprefix.a:gistls
+    elseif get(g:, 'gist_list_rightbelow', 0)
+      exec 'silent noautocmd rightbelow 5 split +set\ winfixheight ' s:bufprefix.a:gistls
+    else
+      exec 'silent noautocmd split' s:bufprefix.a:gistls
+    endif
+  endif
+
+  let url = url . '?per_page=' . a:pagelimit
+  if a:page > 1
+    let oldlines = getline(0, line('$'))
+    let url = url . '&page=' . a:page
+  endif
+
+  setlocal modifiable
+  let old_undolevels = &undolevels
+  let oldlines = []
+  silent %d _
