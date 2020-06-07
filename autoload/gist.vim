@@ -260,3 +260,38 @@ function! s:GistList(gistls, page, pagelimit) abort
   nohlsearch
   redraw | echo ''
 endfunction
+
+function! gist#list_recursively(user, ...) abort
+  let use_cache = get(a:000, 0, 1)
+  let limit = get(a:000, 1, -1)
+  let verbose = get(a:000, 2, 1)
+  if a:user ==# 'mine'
+    let url = g:gist_api_url . 'gists'
+  elseif a:user ==# 'starred'
+    let url = g:gist_api_url . 'gists/starred'
+  else
+    let url = g:gist_api_url.'users/'.a:user.'/gists'
+  endif
+
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    " anonymous user cannot get gists to prevent infinite recursive loading
+    return []
+  endif
+
+  if use_cache && exists('g:gist_list_recursively_cache')
+    if has_key(g:gist_list_recursively_cache, a:user)
+      return webapi#json#decode(g:gist_list_recursively_cache[a:user])
+    endif
+  endif
+
+  let page = 1
+  let gists = []
+  let lastpage = -1
+
+  function! s:get_lastpage(res) abort
+    let links = split(a:res.header[match(a:res.header, 'Link')], ',')
+    let link = links[match(links, 'rel=[''"]last[''"]')]
+    let page = str2nr(matchlist(link, '\%(page=\)\(\d\+\)')[1])
+    return page
+  endfunction
