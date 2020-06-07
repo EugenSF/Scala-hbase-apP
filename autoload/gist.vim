@@ -332,3 +332,46 @@ function! gist#list(user, ...) abort
   let auth = s:GistGetAuthHeader()
   if len(auth) == 0
     return []
+  endif
+  let res = webapi#http#get(url, '', { 'Authorization': auth })
+  return webapi#json#decode(res.content)
+endfunction
+
+function! s:GistGetFileName(gistid) abort
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    return ''
+  endif
+  let res = webapi#http#get(g:gist_api_url.'gists/'.a:gistid, '', { 'Authorization': auth })
+  let gist = webapi#json#decode(res.content)
+  if has_key(gist, 'files')
+    return sort(keys(gist.files))[0]
+  endif
+  return ''
+endfunction
+
+function! s:GistDetectFiletype(gistid) abort
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    return ''
+  endif
+  let res = webapi#http#get(g:gist_api_url.'gists/'.a:gistid, '', { 'Authorization': auth })
+  let gist = webapi#json#decode(res.content)
+  let filename = sort(keys(gist.files))[0]
+  let ext = fnamemodify(filename, ':e')
+  if has_key(s:extmap, ext)
+    let type = s:extmap[ext]
+  else
+    let type = get(gist.files[filename], 'type', 'text')
+  endif
+  silent! exec 'setlocal ft='.tolower(type)
+endfunction
+
+function! s:GistWrite(fname) abort
+  if substitute(a:fname, '\\', '/', 'g') == expand("%:p:gs@\\@/@")
+    if g:gist_update_on_write != 2 || v:cmdbang
+      Gist -e
+    else
+      echohl ErrorMsg | echomsg 'Please type ":w!" to update a gist.' | echohl None
+    endif
+  else
