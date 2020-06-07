@@ -295,3 +295,40 @@ function! gist#list_recursively(user, ...) abort
     let page = str2nr(matchlist(link, '\%(page=\)\(\d\+\)')[1])
     return page
   endfunction
+
+  if verbose > 0
+    redraw | echon 'Loading gists...'
+  endif
+
+  while limit == -1 || page <= limit
+    let res = webapi#http#get(url.'?page='.page, '', {'Authorization': auth})
+    if limit == -1
+      " update limit to the last page
+      let limit = s:get_lastpage(res)
+    endif
+    if verbose > 0
+      redraw | echon 'Loading gists... ' . page . '/' . limit . ' pages has loaded.'
+    endif
+    let gists = gists + webapi#json#decode(res.content)
+    let page = page + 1
+  endwhile
+  let g:gist_list_recursively_cache = get(g:, 'gist_list_recursively_cache', {})
+  let g:gist_list_recursively_cache[a:user] = webapi#json#encode(gists)
+  return gists
+endfunction
+
+function! gist#list(user, ...) abort
+  let page = get(a:000, 0, 0)
+  if a:user ==# '-all'
+    let url = g:gist_api_url.'gists/public'
+  elseif get(g:, 'gist_show_privates', 0) && a:user ==# 'starred'
+    let url = g:gist_api_url.'gists/starred'
+  elseif get(g:, 'gist_show_privates') && a:user ==# 'mine'
+    let url = g:gist_api_url.'gists'
+  else
+    let url = g:gist_api_url.'users/'.a:user.'/gists'
+  endif
+
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    return []
