@@ -375,3 +375,49 @@ function! s:GistWrite(fname) abort
       echohl ErrorMsg | echomsg 'Please type ":w!" to update a gist.' | echohl None
     endif
   else
+    exe 'w'.(v:cmdbang ? '!' : '') fnameescape(v:cmdarg) fnameescape(a:fname)
+    silent! exe 'file' fnameescape(a:fname)
+    silent! au! BufWriteCmd <buffer>
+  endif
+endfunction
+
+function! s:GistGet(gistid, clipboard) abort
+  redraw | echon 'Getting gist... '
+  let res = webapi#http#get(g:gist_api_url.'gists/'.a:gistid, '', { 'Authorization': s:GistGetAuthHeader() })
+  if res.status =~# '^2'
+    try
+      let gist = webapi#json#decode(res.content)
+    catch
+      redraw
+      echohl ErrorMsg | echomsg 'Gist seems to be broken' | echohl None
+      return
+    endtry
+    if get(g:, 'gist_get_multiplefile', 0) != 0
+      let num_file = len(keys(gist.files))
+    else
+      let num_file = 1
+    endif
+    redraw
+    if num_file > len(keys(gist.files))
+      echohl ErrorMsg | echomsg 'Gist not found' | echohl None
+      return
+    endif
+    augroup GistWrite
+      au!
+    augroup END
+    for n in range(num_file)
+      try
+        let old_undolevels = &undolevels
+        let filename = sort(keys(gist.files))[n]
+
+        let winnum = bufwinnr(bufnr(s:bufprefix.a:gistid.'/'.filename))
+        if winnum != -1
+          if winnum != bufwinnr('%')
+            exe winnum 'wincmd w'
+          endif
+          setlocal modifiable
+        else
+          if num_file == 1
+            if get(g:, 'gist_edit_with_buffers', 0)
+              let found = -1
+              for wnr in range(1, winnr('$'))
