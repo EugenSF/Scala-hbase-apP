@@ -520,3 +520,63 @@ function! s:GistListAction(mode) abort
       " TODO close with buffe rname
       bdelete
       bdelete
+    elseif a:mode == 3
+      call s:GistGet(gistid, 1)
+      " TODO close with buffe rname
+      bdelete
+      bdelete
+      normal! "+p
+    endif
+    return
+  endif
+  if line =~# '^more\.\.\.$'
+    call s:GistList(b:gistls, b:page+1, g:gist_per_page_limit)
+    return
+  endif
+endfunction
+
+function! s:GistUpdate(content, gistid, gistnm, desc) abort
+  let gist = { 'id': a:gistid, 'files' : {}, 'description': '','public': function('webapi#json#true') }
+  if exists('b:gist')
+    if has_key(b:gist, 'filename') && len(a:gistnm) > 0
+      let gist.files[b:gist.filename] = { 'content': '', 'filename': b:gist.filename }
+      let b:gist.filename = a:gistnm
+    endif
+    if has_key(b:gist, 'private') && b:gist.private | let gist['public'] = function('webapi#json#false') | endif
+    if has_key(b:gist, 'description') | let gist['description'] = b:gist.description | endif
+    if has_key(b:gist, 'filename') | let filename = b:gist.filename | endif
+  else
+    let filename = a:gistnm
+    if len(filename) == 0 | let filename = s:GistGetFileName(a:gistid) | endif
+    if len(filename) == 0 | let filename = s:get_current_filename(1) | endif
+  endif
+
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    redraw
+    echohl ErrorMsg | echomsg v:errmsg | echohl None
+    return
+  endif
+
+  " Update description
+  " If no new description specified, keep the old description
+  if a:desc !=# ' '
+    let gist['description'] = a:desc
+  else
+    let res = webapi#http#get(g:gist_api_url.'gists/'.a:gistid, '', { 'Authorization': auth })
+    if res.status =~# '^2'
+      let old_gist = webapi#json#decode(res.content)
+      let gist['description'] = old_gist.description
+    endif
+  endif
+
+  let gist.files[filename] = { 'content': a:content, 'filename': filename }
+
+  redraw | echon 'Updating gist... '
+  let res = webapi#http#post(g:gist_api_url.'gists/' . a:gistid,
+  \ webapi#json#encode(gist), {
+  \   'Authorization': auth,
+  \   'Content-Type': 'application/json',
+  \})
+  if res.status =~# '^2'
+    let obj = webapi#json#decode(res.content)
