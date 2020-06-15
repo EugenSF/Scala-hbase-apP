@@ -421,3 +421,47 @@ function! s:GistGet(gistid, clipboard) abort
             if get(g:, 'gist_edit_with_buffers', 0)
               let found = -1
               for wnr in range(1, winnr('$'))
+                let bnr = winbufnr(wnr)
+                if bnr != -1 && !empty(getbufvar(bnr, 'gist'))
+                  let found = wnr
+                  break
+                endif
+              endfor
+              if found != -1
+                exe found 'wincmd w'
+                setlocal modifiable
+              else
+                if get(g:, 'gist_list_vsplit', 0)
+                  exec 'silent noautocmd rightbelow vnew'
+                else
+                  exec 'silent noautocmd rightbelow new'
+                endif
+              endif
+            else
+              silent only!
+              if get(g:, 'gist_list_vsplit', 0)
+                exec 'silent noautocmd rightbelow vnew'
+              else
+                exec 'silent noautocmd rightbelow new'
+              endif
+            endif
+          else
+            if get(g:, 'gist_list_vsplit', 0)
+              exec 'silent noautocmd rightbelow vnew'
+            else
+              exec 'silent noautocmd rightbelow new'
+            endif
+          endif
+          setlocal noswapfile
+          silent exec 'noautocmd file' s:bufprefix.a:gistid.'/'.fnameescape(filename)
+        endif
+        set undolevels=-1
+        filetype detect
+        silent %d _
+
+        let content = gist.files[filename].content
+        call setline(1, split(content, "\n"))
+        let b:gist = {
+        \ 'filename': filename,
+        \ 'id': gist.id,
+        \ 'description': gist.description,
