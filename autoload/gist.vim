@@ -465,3 +465,58 @@ function! s:GistGet(gistid, clipboard) abort
         \ 'filename': filename,
         \ 'id': gist.id,
         \ 'description': gist.description,
+        \ 'private': gist.public =~# 'true',
+        \}
+      catch
+        let &undolevels = old_undolevels
+        bw!
+        redraw
+        echohl ErrorMsg | echomsg 'Gist contains binary' | echohl None
+        return
+      endtry
+      let &undolevels = old_undolevels
+      setlocal buftype=acwrite bufhidden=hide noswapfile
+      setlocal nomodified
+      doau StdinReadPost,BufRead,BufReadPost
+      let gist_detect_filetype = get(g:, 'gist_detect_filetype', 0)
+      if (&ft ==# '' && gist_detect_filetype == 1) || gist_detect_filetype == 2
+        call s:GistDetectFiletype(a:gistid)
+      endif
+      if a:clipboard
+        if exists('g:gist_clip_command')
+          exec 'silent w !'.g:gist_clip_command
+        elseif has('clipboard')
+          silent! %yank +
+        else
+          %yank
+        endif
+      endif
+      1
+      augroup GistWrite
+        au! BufWriteCmd <buffer> call s:GistWrite(expand("<amatch>"))
+      augroup END
+    endfor
+  else
+    bw!
+    redraw
+    echohl ErrorMsg | echomsg 'Gist not found' | echohl None
+    return
+  endif
+endfunction
+
+function! s:GistListAction(mode) abort
+  let line = getline('.')
+  let mx = '^gist:\s*\zs\(\w\+\)\ze.*'
+  if line =~# mx
+    let gistid = matchstr(line, mx)
+    if a:mode == 1
+      call s:open_browser('https://gist.github.com/' . gistid)
+    elseif a:mode == 0
+      call s:GistGet(gistid, 0)
+      wincmd w
+      bw
+    elseif a:mode == 2
+      call s:GistGet(gistid, 1)
+      " TODO close with buffe rname
+      bdelete
+      bdelete
