@@ -580,3 +580,48 @@ function! s:GistUpdate(content, gistid, gistnm, desc) abort
   \})
   if res.status =~# '^2'
     let obj = webapi#json#decode(res.content)
+    let loc = obj['html_url']
+    let b:gist = {'id': a:gistid, 'filename': filename}
+    setlocal nomodified
+    redraw | echomsg 'Done: '.loc
+  else
+    let loc = ''
+    echohl ErrorMsg | echomsg 'Post failed: ' . res.message | echohl None
+  endif
+  return loc
+endfunction
+
+function! s:GistDelete(gistid) abort
+  let auth = s:GistGetAuthHeader()
+  if len(auth) == 0
+    redraw
+    echohl ErrorMsg | echomsg v:errmsg | echohl None
+    return
+  endif
+
+  redraw | echon 'Deleting gist... '
+  let res = webapi#http#post(g:gist_api_url.'gists/'.a:gistid, '', {
+  \   'Authorization': auth,
+  \   'Content-Type': 'application/json',
+  \}, 'DELETE')
+  if res.status =~# '^2'
+    if exists('b:gist')
+      unlet b:gist
+    endif
+    redraw | echomsg 'Done: '
+  else
+    echohl ErrorMsg | echomsg 'Delete failed: ' . res.message | echohl None
+  endif
+endfunction
+
+function! s:get_current_filename(no) abort
+  let filename = expand('%:t')
+  if len(filename) == 0 && &ft !=# ''
+    let pair = filter(items(s:extmap), 'v:val[1] == &ft')
+    if len(pair) > 0
+      let filename = printf('gistfile%d%s', a:no, pair[0][0])
+    endif
+  endif
+  if filename ==# ''
+    let filename = printf('gistfile%d.txt', a:no)
+  endif
