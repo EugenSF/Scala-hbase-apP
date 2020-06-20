@@ -665,3 +665,39 @@ function! s:GistPost(content, private, desc, anonymous) abort
     let auth = s:GistGetAuthHeader()
     if len(auth) == 0
       redraw
+      echohl ErrorMsg | echomsg v:errmsg | echohl None
+      return
+    endif
+    let header['Authorization'] = auth
+  endif
+
+  redraw | echon 'Posting it to gist... '
+  let res = webapi#http#post(g:gist_api_url.'gists', webapi#json#encode(gist), header)
+  if res.status =~# '^2'
+    let obj = webapi#json#decode(res.content)
+    let loc = obj['html_url']
+    let b:gist = {
+    \ 'filename': filename,
+    \ 'id': matchstr(loc, '[^/]\+$'),
+    \ 'description': gist['description'],
+    \ 'private': a:private,
+    \}
+    if s:update_GistID(b:gist['id'])
+      Gist -e
+    endif
+    redraw | echomsg 'Done: '.loc
+  else
+    let loc = ''
+    echohl ErrorMsg | echomsg 'Post failed: '. res.message | echohl None
+  endif
+  return loc
+endfunction
+
+function! s:GistPostBuffers(private, desc, anonymous) abort
+  let bufnrs = range(1, bufnr('$'))
+  let bn = bufnr('%')
+  let query = []
+
+  let gist = { 'files' : {}, 'description': '','public': function('webapi#json#true') }
+  if a:desc !=# ' ' | let gist['description'] = a:desc | endif
+  if a:private | let gist['public'] = function('webapi#json#false') | endif
