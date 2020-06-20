@@ -625,3 +625,43 @@ function! s:get_current_filename(no) abort
   if filename ==# ''
     let filename = printf('gistfile%d.txt', a:no)
   endif
+  return filename
+endfunction
+
+function! s:update_GistID(id) abort
+  let view = winsaveview()
+  normal! gg
+  let ret = 0
+  if search('\<GistID\>:\s*$')
+    let line = getline('.')
+    let line = substitute(line, '\s\+$', '', 'g')
+    call setline('.', line . ' ' . a:id)
+    let ret = 1
+  endif
+  call winrestview(view)
+  return ret
+endfunction
+
+" GistPost function:
+"   Post new gist to github
+"
+"   if there is an embedded gist url or gist id in your file,
+"   it will just update it.
+"                                                   -- by c9s
+"
+"   embedded gist id format:
+"
+"       GistID: 123123
+"
+function! s:GistPost(content, private, desc, anonymous) abort
+  let gist = { 'files' : {}, 'description': '','public': function('webapi#json#true') }
+  if a:desc !=# ' ' | let gist['description'] = a:desc | endif
+  if a:private | let gist['public'] = function('webapi#json#false') | endif
+  let filename = s:get_current_filename(1)
+  let gist.files[filename] = { 'content': a:content, 'filename': filename }
+
+  let header = {'Content-Type': 'application/json'}
+  if !a:anonymous
+    let auth = s:GistGetAuthHeader()
+    if len(auth) == 0
+      redraw
