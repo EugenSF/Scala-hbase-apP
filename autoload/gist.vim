@@ -737,3 +737,34 @@ function! s:GistPostBuffers(private, desc, anonymous) abort
     \ 'id': matchstr(loc, '[^/]\+$'),
     \ 'description': gist['description'],
     \ 'private': a:private,
+    \}
+    if s:update_GistID(b:gist['id'])
+      Gist -e
+    endif
+    redraw | echomsg 'Done: '.loc
+  else
+    let loc = ''
+    echohl ErrorMsg | echomsg 'Post failed: ' . res.message | echohl None
+  endif
+  return loc
+endfunction
+
+function! gist#Gist(count, bang, line1, line2, ...) abort
+  redraw
+  let bufname = bufname('%')
+  " find GistID: in content , then we should just update
+  let gistid = ''
+  let gistls = ''
+  let gistnm = ''
+  let gistdesc = ' '
+  let private = get(g:, 'gist_post_private', 0)
+  let multibuffer = 0
+  let clipboard = 0
+  let deletepost = 0
+  let editpost = 0
+  let anonymous = get(g:, 'gist_post_anonymous', 0)
+  let openbrowser = 0
+  let setpagelimit = 0
+  let pagelimit = g:gist_per_page_limit
+  let listmx = '^\%(-l\|--list\)\s*\([^\s]\+\)\?$'
+  let bufnamemx = '^' . s:bufprefix .'\(\zs[0-9a-f]\+\ze\|\zs[0-9a-f]\+\ze[/\\].*\)$'
