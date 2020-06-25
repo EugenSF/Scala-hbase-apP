@@ -768,3 +768,52 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
   let pagelimit = g:gist_per_page_limit
   let listmx = '^\%(-l\|--list\)\s*\([^\s]\+\)\?$'
   let bufnamemx = '^' . s:bufprefix .'\(\zs[0-9a-f]\+\ze\|\zs[0-9a-f]\+\ze[/\\].*\)$'
+  if strlen(g:github_user) == 0 && anonymous == 0
+    echohl ErrorMsg | echomsg 'You have not configured a Github account. Read '':help gist-setup''.' | echohl None
+    return
+  endif
+  if a:bang == '!'
+    let gistidbuf = ''
+  elseif bufname =~# bufnamemx
+    let gistidbuf = matchstr(bufname, bufnamemx)
+  elseif exists('b:gist') && has_key(b:gist, 'id')
+    let gistidbuf = b:gist['id']
+  else
+    let gistidbuf = matchstr(join(getline(a:line1, a:line2), "\n"), 'GistID:\s*\zs\w\+')
+  endif
+
+  let args = (a:0 > 0) ? s:shellwords(a:1) : []
+  for arg in args
+    if arg =~# '^\(-h\|--help\)$\C'
+      help :Gist
+      return
+    elseif arg =~# '^\(-g\|--git\)$\C' && gistidbuf !=# '' && g:gist_api_url ==# 'https://api.github.com/' && has_key(b:, 'gist') && has_key(b:gist, 'id')
+      echo printf('git clone git@github.com:%s', b:gist['id'])
+      return
+    elseif arg =~# '^\(-G\|--gitclone\)$\C' && gistidbuf !=# '' && g:gist_api_url ==# 'https://api.github.com/' && has_key(b:, 'gist') && has_key(b:gist, 'id')
+      exe '!' printf('git clone git@github.com:%s', b:gist['id'])
+      return
+    elseif setpagelimit == 1
+      let setpagelimit = 0
+      let pagelimit = str2nr(arg)
+      if pagelimit < 1 || pagelimit > 100
+        echohl ErrorMsg | echomsg 'Page limit should be between 1 and 100: '.arg | echohl None
+        unlet args
+        return 0
+      endif
+    elseif arg =~# '^\(-la\|--listall\)$\C'
+      let gistls = '-all'
+    elseif arg =~# '^\(-ls\|--liststar\)$\C'
+      let gistls = 'starred'
+    elseif arg =~# '^\(-l\|--list\)$\C'
+      if get(g:, 'gist_show_privates')
+        let gistls = 'mine'
+      else
+        let gistls = g:github_user
+      endif
+    elseif arg =~# '^\(-m\|--multibuffer\)$\C'
+      let multibuffer = 1
+    elseif arg =~# '^\(-p\|--private\)$\C'
+      let private = 1
+    elseif arg =~# '^\(-P\|--public\)$\C'
+      let private = 0
