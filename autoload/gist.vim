@@ -701,3 +701,39 @@ function! s:GistPostBuffers(private, desc, anonymous) abort
   let gist = { 'files' : {}, 'description': '','public': function('webapi#json#true') }
   if a:desc !=# ' ' | let gist['description'] = a:desc | endif
   if a:private | let gist['public'] = function('webapi#json#false') | endif
+
+  let index = 1
+  for bufnr in bufnrs
+    if !bufexists(bufnr) || buflisted(bufnr) == 0
+      continue
+    endif
+    echo 'Creating gist content'.index.'... '
+    silent! exec 'buffer!' bufnr
+    let content = join(getline(1, line('$')), "\n")
+    let filename = s:get_current_filename(index)
+    let gist.files[filename] = { 'content': content, 'filename': filename }
+    let index = index + 1
+  endfor
+  silent! exec 'buffer!' bn
+
+  let header = {'Content-Type': 'application/json'}
+  if !a:anonymous
+    let auth = s:GistGetAuthHeader()
+    if len(auth) == 0
+      redraw
+      echohl ErrorMsg | echomsg v:errmsg | echohl None
+      return
+    endif
+    let header['Authorization'] = auth
+  endif
+
+  redraw | echon 'Posting it to gist... '
+  let res = webapi#http#post(g:gist_api_url.'gists', webapi#json#encode(gist), header)
+  if res.status =~# '^2'
+    let obj = webapi#json#decode(res.content)
+    let loc = obj['html_url']
+    let b:gist = {
+    \ 'filename': filename,
+    \ 'id': matchstr(loc, '[^/]\+$'),
+    \ 'description': gist['description'],
+    \ 'private': a:private,
