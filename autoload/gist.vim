@@ -855,3 +855,36 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
         echohl ErrorMsg | echomsg v:errmsg | echohl None
       else
         let gistid = gistidbuf
+        let res = webapi#http#post(g:gist_api_url.'gists/'.gistid.'/star', '', { 'Authorization': auth }, 'DELETE')
+        if res.status =~# '^2'
+          echomsg 'Unstarred' gistid
+        else
+          echohl ErrorMsg | echomsg 'Unstar failed' | echohl None
+        endif
+      endif
+      return
+    elseif arg =~# '^\(-f\|--fork\)$\C' && gistidbuf !=# ''
+      let auth = s:GistGetAuthHeader()
+      if len(auth) == 0
+        echohl ErrorMsg | echomsg v:errmsg | echohl None
+        return
+      else
+        let gistid = gistidbuf
+        let res = webapi#http#post(g:gist_api_url.'gists/'.gistid.'/fork', '', { 'Authorization': auth })
+        if res.status =~# '^2'
+          let obj = webapi#json#decode(res.content)
+          let gistid = obj['id']
+        else
+          echohl ErrorMsg | echomsg 'Fork failed' | echohl None
+          return
+        endif
+      endif
+    elseif arg =~# '^\(-b\|--browser\)$\C'
+      let openbrowser = 1
+    elseif arg =~# '^\(-n\|--per-page\)$\C'
+      if len(gistls) > 0
+        let setpagelimit = 1
+      else
+        echohl ErrorMsg | echomsg 'Page limit can be set only for list commands'.arg | echohl None
+        unlet args
+        return 0
