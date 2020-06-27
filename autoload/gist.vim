@@ -817,3 +817,41 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
       let private = 1
     elseif arg =~# '^\(-P\|--public\)$\C'
       let private = 0
+    elseif arg =~# '^\(-a\|--anonymous\)$\C'
+      let anonymous = 1
+    elseif arg =~# '^\(-s\|--description\)$\C'
+      let gistdesc = ''
+    elseif arg =~# '^\(-c\|--clipboard\)$\C'
+      let clipboard = 1
+    elseif arg =~# '^--rawurl$\C' && gistidbuf !=# '' && g:gist_api_url ==# 'https://api.github.com/'
+      let gistid = gistidbuf
+      echo 'https://gist.github.com/raw/'.gistid
+      return
+    elseif arg =~# '^\(-d\|--delete\)$\C' && gistidbuf !=# ''
+      let gistid = gistidbuf
+      let deletepost = 1
+    elseif arg =~# '^\(-e\|--edit\)$\C'
+      if gistidbuf !=# ''
+        let gistid = gistidbuf
+      endif
+      let editpost = 1
+    elseif arg =~# '^\(+1\|--star\)$\C' && gistidbuf !=# ''
+      let auth = s:GistGetAuthHeader()
+      if len(auth) == 0
+        echohl ErrorMsg | echomsg v:errmsg | echohl None
+      else
+        let gistid = gistidbuf
+        let res = webapi#http#post(g:gist_api_url.'gists/'.gistid.'/star', '', { 'Authorization': auth }, 'PUT')
+        if res.status =~# '^2'
+          echomsg 'Starred' gistid
+        else
+          echohl ErrorMsg | echomsg 'Star failed' | echohl None
+        endif
+      endif
+      return
+    elseif arg =~# '^\(-1\|--unstar\)$\C' && gistidbuf !=# ''
+      let auth = s:GistGetAuthHeader()
+      if len(auth) == 0
+        echohl ErrorMsg | echomsg v:errmsg | echohl None
+      else
+        let gistid = gistidbuf
