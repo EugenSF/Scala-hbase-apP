@@ -931,3 +931,42 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
   else
     let url = ''
     if multibuffer == 1
+      let url = s:GistPostBuffers(private, gistdesc, anonymous)
+    else
+      if a:count < 1
+        let content = join(getline(a:line1, a:line2), "\n")
+      else
+        let save_regcont = @"
+        let save_regtype = getregtype('"')
+        silent! normal! gvy
+        let content = @"
+        call setreg('"', save_regcont, save_regtype)
+      endif
+      if editpost == 1
+        let url = s:GistUpdate(content, gistid, gistnm, gistdesc)
+      elseif deletepost == 1
+        call s:GistDelete(gistid)
+      else
+        let url = s:GistPost(content, private, gistdesc, anonymous)
+      endif
+      if a:count >= 1 && get(g:, 'gist_keep_selection', 0) == 1
+        silent! normal! gv
+      endif
+    endif
+    if type(url) == 1 && len(url) > 0
+      if get(g:, 'gist_open_browser_after_post', 0) == 1 || openbrowser
+        call s:open_browser(url)
+      endif
+      let gist_put_url_to_clipboard_after_post = get(g:, 'gist_put_url_to_clipboard_after_post', 1)
+      if gist_put_url_to_clipboard_after_post > 0 || clipboard
+        if gist_put_url_to_clipboard_after_post == 2
+          let url = url . "\n"
+        endif
+        if exists('g:gist_clip_command')
+          call system(g:gist_clip_command, url)
+        elseif has('clipboard')
+          let @+ = url
+        else
+          let @" = url
+        endif
+      endif
