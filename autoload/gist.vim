@@ -970,3 +970,44 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
           let @" = url
         endif
       endif
+    endif
+  endif
+  return 1
+endfunction
+
+function! s:GistGetAuthHeader() abort
+  if get(g:, 'gist_use_password_in_gitconfig', 0) != 0
+    let password = substitute(system('git config --get github.password'), "\n", '', '')
+    if password =~# '^!' | let password = system(password[1:]) | endif
+    return printf('basic %s', webapi#base64#b64encode(g:github_user.':'.password))
+  endif
+  let auth = ''
+  if !empty(get(g:, 'gist_token', $GITHUB_TOKEN))
+    let auth = 'token ' . get(g:, 'gist_token', $GITHUB_TOKEN)
+  elseif filereadable(s:gist_token_file)
+    let str = join(readfile(s:gist_token_file), '')
+    if type(str) == 1
+      let auth = str
+    endif
+  endif
+  if len(auth) > 0
+    return auth
+  endif
+
+  redraw
+  echohl WarningMsg
+  echo 'Gist.vim requires authorization to use the GitHub API. These settings are stored in "~/.gist-vim". If you want to revoke, do "rm ~/.gist-vim".'
+  echohl None
+  let password = inputsecret('GitHub Password for '.g:github_user.':')
+  if len(password) == 0
+    let v:errmsg = 'Canceled'
+    return ''
+  endif
+  let note = 'Gist.vim on '.hostname().' '.strftime('%Y/%m/%d-%H:%M:%S')
+  let note_url = 'http://www.vim.org/scripts/script.php?script_id=2423'
+  let insecureSecret = printf('basic %s', webapi#base64#b64encode(g:github_user.':'.password))
+  let res = webapi#http#post(g:gist_api_url.'authorizations', webapi#json#encode({
+              \  'scopes'   : ['gist'],
+              \  'note'     : note,
+              \  'note_url' : note_url,
+              \}), {
