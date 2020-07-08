@@ -888,3 +888,46 @@ function! gist#Gist(count, bang, line1, line2, ...) abort
         echohl ErrorMsg | echomsg 'Page limit can be set only for list commands'.arg | echohl None
         unlet args
         return 0
+      endif
+    elseif arg !~# '^-' && len(gistnm) == 0
+      if gistdesc !=# ' '
+        let gistdesc = matchstr(arg, '^\s*\zs.*\ze\s*$')
+      elseif editpost == 1 || deletepost == 1
+        let gistnm = arg
+      elseif len(gistls) > 0 && arg !=# '^\w\+$\C'
+        let gistls = arg
+      elseif arg =~# '^[0-9a-z]\+$\C'
+        let gistid = arg
+      else
+        echohl ErrorMsg | echomsg 'Invalid arguments: '.arg | echohl None
+        unlet args
+        return 0
+      endif
+    elseif len(arg) > 0
+      echohl ErrorMsg | echomsg 'Invalid arguments: '.arg | echohl None
+      unlet args
+      return 0
+    endif
+  endfor
+  unlet args
+  "echom "gistid=".gistid
+  "echom "gistls=".gistls
+  "echom "gistnm=".gistnm
+  "echom "gistdesc=".gistdesc
+  "echom "private=".private
+  "echom "clipboard=".clipboard
+  "echom "editpost=".editpost
+  "echom "deletepost=".deletepost
+
+  if gistidbuf !=# '' && gistid ==# '' && editpost == 0 && deletepost == 0 && anonymous == 0
+    let editpost = 1
+    let gistid = gistidbuf
+  endif
+
+  if len(gistls) > 0
+    call s:GistList(gistls, 1, pagelimit)
+  elseif len(gistid) > 0 && editpost == 0 && deletepost == 0
+    call s:GistGet(gistid, clipboard)
+  else
+    let url = ''
+    if multibuffer == 1
