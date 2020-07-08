@@ -1011,3 +1011,40 @@ function! s:GistGetAuthHeader() abort
               \  'note'     : note,
               \  'note_url' : note_url,
               \}), {
+              \  'Content-Type'  : 'application/json',
+              \  'Authorization' : insecureSecret,
+              \})
+  let h = filter(res.header, 'stridx(v:val, "X-GitHub-OTP:") == 0')
+  if len(h)
+    let otp = inputsecret('OTP:')
+    if len(otp) == 0
+      let v:errmsg = 'Canceled'
+      return ''
+    endif
+    let res = webapi#http#post(g:gist_api_url.'authorizations', webapi#json#encode({
+                \  'scopes'   : ['gist'],
+                \  'note'     : note,
+                \  'note_url' : note_url,
+                \}), {
+                \  'Content-Type'  : 'application/json',
+                \  'Authorization' : insecureSecret,
+                \  'X-GitHub-OTP'  : otp,
+                \})
+  endif
+  let authorization = webapi#json#decode(res.content)
+  if has_key(authorization, 'token')
+    let secret = printf('token %s', authorization.token)
+    call writefile([secret], s:gist_token_file)
+    if !(has('win32') || has('win64'))
+      call system('chmod go= '.s:gist_token_file)
+    endif
+  elseif has_key(authorization, 'message')
+    let secret = ''
+    let v:errmsg = authorization.message
+  endif
+  return secret
+endfunction
+
+let s:extmap = extend({
+\'.adb': 'ada',
+\'.ahk': 'ahk',
