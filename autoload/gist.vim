@@ -1175,3 +1175,12 @@ let s:extmap = extend({
 \'.vim': 'vim',
 \'.weechatlog': 'weechatlog',
 \'.xml': 'xml',
+\'.xq': 'xquery',
+\'.xs': 'xs',
+\'.yml': 'yaml',
+\}, get(g:, 'gist_extmap', {}))
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim:set et:
