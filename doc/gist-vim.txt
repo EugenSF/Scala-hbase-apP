@@ -1,3 +1,4 @@
 *Gist.vim* Vimscript for creating gists (http://gist.github.com)
 
 Usage                                          |vim-gist-usage|
+Tips                                     
