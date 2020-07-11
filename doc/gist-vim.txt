@@ -1,1 +1,3 @@
-*Gist.vim* Vimscript for creating gis
+*Gist.vim* Vimscript for creating gists (http://gist.github.com)
+
+Usage              
