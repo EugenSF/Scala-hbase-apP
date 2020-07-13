@@ -2,4 +2,5 @@
 
 Usage                                          |vim-gist-usage|
 Tips                                           |vim-gist-tips|
-License                                        |
+License                                        |vim-gist-license|
+Install                            
