@@ -5,4 +5,5 @@ Tips                                           |vim-gist-tips|
 License                                        |vim-gist-license|
 Install                                        |vim-gist-install|
 Requirements                                   |vim-gist-requirements|
-Setup                          
+Setup                                          |vim-gist-setup|
+FAQ       
