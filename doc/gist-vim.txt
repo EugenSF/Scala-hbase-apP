@@ -6,4 +6,6 @@ License                                        |vim-gist-license|
 Install                                        |vim-gist-install|
 Requirements                                   |vim-gist-requirements|
 Setup                                          |vim-gist-setup|
-FAQ                                            |vim-gis
+FAQ                                            |vim-gist-faq|
+
+This is a vimscript for creating gists (ht
