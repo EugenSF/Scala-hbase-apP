@@ -8,4 +8,6 @@ Requirements                                   |vim-gist-requirements|
 Setup                                          |vim-gist-setup|
 FAQ                                            |vim-gist-faq|
 
-This is a vimscript for creating gists (ht
+This is a vimscript for creating gists (http://gist.github.com)
+
+For the latest version 
