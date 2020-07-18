@@ -10,4 +10,6 @@ FAQ                                            |vim-gist-faq|
 
 This is a vimscript for creating gists (http://gist.github.com)
 
-For the latest version please see https://github.com/matt
+For the latest version please see https://github.com/mattn/vim-gist.
+
+==========================
