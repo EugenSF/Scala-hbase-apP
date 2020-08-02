@@ -17,4 +17,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
 - Post current buffer to gist, using default privacy option. >
 
-    :Gi
+    :Gist
+<
+- Post selected text to gist, using default
