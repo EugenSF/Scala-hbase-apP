@@ -15,4 +15,6 @@ For the latest version please see https://github.com/mattn/vim-gist.
 ==============================================================================
 USAGE                                                 *:Gist* *vim-gist-usage*
 
-- Post current buffer to gist, usi
+- Post current buffer to gist, using default privacy option. >
+
+    :Gi
