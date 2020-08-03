@@ -19,4 +19,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :Gist
 <
-- Post selected text to gist, using default
+- Post selected text to gist, using default privacy option.
+  This applies to all 
