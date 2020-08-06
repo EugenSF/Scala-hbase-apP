@@ -20,4 +20,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist
 <
 - Post selected text to gist, using default privacy option.
-  This applies to all 
+  This applies to all permutations listed below (except mu
