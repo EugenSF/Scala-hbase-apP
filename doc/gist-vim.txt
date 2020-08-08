@@ -24,4 +24,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :'<,'>Gist
 <
-- Create 
+- Create a private gist. >
+
+    :Gist -p
+  
