@@ -27,4 +27,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - Create a private gist. >
 
     :Gist -p
-  
+    :Gist --private
+<
+- Create a public g
