@@ -30,4 +30,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist --private
 <
 - Create a public gist.
-  (Only relevant if you've set gists 
+  (Only relevant if you've set gists to be private by default.) >
+
+    :Gis
