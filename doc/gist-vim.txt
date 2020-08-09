@@ -32,4 +32,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - Create a public gist.
   (Only relevant if you've set gists to be private by default.) >
 
-    :Gis
+    :Gist -P
+    :Gist --public
+<
+- Post whole
