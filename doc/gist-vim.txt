@@ -36,4 +36,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist --public
 <
 - Post whole text to gist as public.
-  This is only re
+  This is only relevant if you've set gists to be private by
