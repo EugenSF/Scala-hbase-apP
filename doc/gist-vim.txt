@@ -40,4 +40,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 >
     :Gist -P
 <
-- Create a
+- Create a gist anonymously. >
+
+    :Gist -a
+ 
