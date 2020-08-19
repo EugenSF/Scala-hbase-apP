@@ -43,4 +43,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - Create a gist anonymously. >
 
     :Gist -a
- 
+    :Gist --anonymous
+<
+- Create a gist with all ope
