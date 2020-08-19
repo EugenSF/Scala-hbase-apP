@@ -48,4 +48,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - Create a gist with all open buffers. >
 
     :Gist -m
-    :Gist --mult
+    :Gist --multibuffer
+<
+- Edit the gist (you need to have open
