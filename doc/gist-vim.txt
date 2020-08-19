@@ -50,4 +50,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -m
     :Gist --multibuffer
 <
-- Edit the gist (you need to have open
+- Edit the gist (you need to have opened the gist buffer first).
+  You can up
