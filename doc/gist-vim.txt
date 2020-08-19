@@ -45,4 +45,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -a
     :Gist --anonymous
 <
-- Create a gist with all ope
+- Create a gist with all open buffers. >
+
+    :Gist -m
+    :Gist --mult
