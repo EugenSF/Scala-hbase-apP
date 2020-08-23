@@ -51,4 +51,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist --multibuffer
 <
 - Edit the gist (you need to have opened the gist buffer first).
-  You can up
+  You can update the gist with the {:w} command within
