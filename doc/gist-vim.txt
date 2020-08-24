@@ -54,4 +54,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
   You can update the gist with the {:w} command within the gist buffer. >
 
     :Gist -e
-    :Gist --edi
+    :Gist --edit
+<
+- Edit the gist with name "foo.js" (you need t
