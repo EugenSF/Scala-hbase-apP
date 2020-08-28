@@ -56,4 +56,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -e
     :Gist --edit
 <
-- Edit the gist with name "foo.js" (you need t
+- Edit the gist with name "foo.js" (you need to have opened the gist buffer
+  first). >
