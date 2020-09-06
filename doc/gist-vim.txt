@@ -61,4 +61,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :Gist -e foo.js
 <
-- Post/Edit with the description " (you need to
+- Post/Edit with the description " (you need to have opened the gist buffer
+  first). >
