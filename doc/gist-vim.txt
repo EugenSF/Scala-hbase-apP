@@ -65,4 +65,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
   first). >
 
     :Gist -s something
-    :Gist --de
+    :Gist --description something
+    :Gist -e -s something
