@@ -67,3 +67,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -s something
     :Gist --description something
     :Gist -e -s something
+<
+- Delete the gist (you need to have o
