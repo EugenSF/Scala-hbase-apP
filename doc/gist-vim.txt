@@ -63,3 +63,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 <
 - Post/Edit with the description " (you need to have opened the gist buffer
   first). >
+
+    :Gist -s something
+    :Gist --de
