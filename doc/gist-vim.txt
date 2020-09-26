@@ -69,4 +69,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -e -s something
 <
 - Delete the gist (you need to have opened the gist buffer first).
-  Password 
+  Password authentication is needed. >
+
+    :Gist
