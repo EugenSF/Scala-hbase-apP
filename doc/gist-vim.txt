@@ -74,4 +74,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -d
     :Gist --delete
 <
-- Fork the gist (you need to have opened the gist buf
+- Fork the gist (you need to have opened the gist buffer first).
+  Password authentication is ne
