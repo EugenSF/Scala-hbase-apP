@@ -71,4 +71,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - Delete the gist (you need to have opened the gist buffer first).
   Password authentication is needed. >
 
-    :Gist
+    :Gist -d
+    :Gist --delete
+<
+- Fork the gist
