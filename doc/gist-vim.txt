@@ -74,4 +74,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -d
     :Gist --delete
 <
-- Fork the gist
+- Fork the gist (you need to have opened the gist buf
