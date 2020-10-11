@@ -80,4 +80,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -f
     :Gist --fork
 <
-- Star the gist (you need to have opened the gi
+- Star the gist (you need to have opened the gist buffer first).
+  Password authentication i
