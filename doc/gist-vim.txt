@@ -80,4 +80,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -f
     :Gist --fork
 <
-- S
+- Star the gist (you need to have opened the gi
