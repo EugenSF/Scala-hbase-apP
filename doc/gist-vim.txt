@@ -86,4 +86,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist +1
 <
 - Unstar the gist (you need to have opened the gist buffer first).
-  Pa
+  Password authentication is needed.
+>
+    
