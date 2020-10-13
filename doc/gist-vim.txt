@@ -85,4 +85,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 >
     :Gist +1
 <
-- Unstar the gist (yo
+- Unstar the gist (you need to have opened the gist buffer first).
+  Pa
