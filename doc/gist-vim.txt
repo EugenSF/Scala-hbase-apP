@@ -92,4 +92,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 <
 - Get gist XXXXX. >
 
- 
+    :Gist XXXXX
+<
+- Get gist XXXXX 
