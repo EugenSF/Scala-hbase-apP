@@ -94,4 +94,8 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :Gist XXXXX
 <
-- Get gist XXXXX 
+- Get gist XXXXX and add to clipboard. >
+
+    :Gist -c XXXXX
+<
+-
