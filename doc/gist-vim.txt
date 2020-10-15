@@ -98,4 +98,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :Gist -c XXXXX
 <
--
+- List your public gists. >
+
+    :Gist -l
