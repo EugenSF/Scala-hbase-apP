@@ -101,3 +101,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - List your public gists. >
 
     :Gist -l
+    :Gist --list
+    :Gist -l -n
