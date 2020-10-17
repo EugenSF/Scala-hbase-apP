@@ -105,4 +105,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -l -n 100
     :Gist --list --per-page 100
 <
-- List 
+- List gists from user "mattn". >
+
+   
