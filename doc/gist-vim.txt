@@ -109,4 +109,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
     :Gist -l mattn
 <
-- List everyone's gist
+- List everyone's gists. >
+
+    :Gist -la
+    :Gist --li
