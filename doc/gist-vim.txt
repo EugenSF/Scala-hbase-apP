@@ -107,4 +107,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 <
 - List gists from user "mattn". >
 
-   
+    :Gist -l mattn
+<
+- List everyone's gist
