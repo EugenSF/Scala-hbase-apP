@@ -116,4 +116,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 <
 - List gists from your starred gists.
 >
-  
+    :Gist -ls
+    :Gist --liststar
+
+- Whi
