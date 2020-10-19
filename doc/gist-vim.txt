@@ -112,4 +112,8 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - List everyone's gists. >
 
     :Gist -la
-    :Gist --li
+    :Gist --listall
+<
+- List gists from your starred gists.
+>
+  
