@@ -121,4 +121,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
 - While the gist list is visible, the following mappings apply:
 
-  - 'o' or 'Enter' will o
+  - 'o' or 'Enter' will open the selected gist file in a ne
