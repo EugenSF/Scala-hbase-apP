@@ -119,4 +119,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -ls
     :Gist --liststar
 
-- Whi
+- While the gist list is visible, the following map
