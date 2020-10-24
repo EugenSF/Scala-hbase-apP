@@ -123,4 +123,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
   - 'o' or 'Enter' will open the selected gist file in a new buffer
     and close the vim-gist listing split.
-  - 'b' will open the selected gist f
+  - 'b' will open the selected gist file in a browser. If you are in
+    GUI vim you
