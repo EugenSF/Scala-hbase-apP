@@ -122,4 +122,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 - While the gist list is visible, the following mappings apply:
 
   - 'o' or 'Enter' will open the selected gist file in a new buffer
-    and close the vim-gist list
+    and close the vim-gist listing split.
+  - 'b' will open the selected gist f
