@@ -126,3 +126,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
   - 'b' will open the selected gist file in a browser. If you are in
     GUI vim you can also achieve this by pressing 'Shift-Enter'.
   - 'y' will copy the contents of the selected gist to the clipboard,
+    and close the vim-gist listing 
