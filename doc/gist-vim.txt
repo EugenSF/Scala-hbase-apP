@@ -128,4 +128,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
   - 'y' will copy the contents of the selected gist to the clipboard,
     and close the vim-gist listing split.
   - 'p' will (copy and) paste the contents of the selected gist to the
-    
+    buffer from which vim-gist was call
