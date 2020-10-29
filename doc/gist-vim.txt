@@ -127,4 +127,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     GUI vim you can also achieve this by pressing 'Shift-Enter'.
   - 'y' will copy the contents of the selected gist to the clipboard,
     and close the vim-gist listing split.
-  - 'p' will (copy and) paste the co
+  - 'p' will (copy and) paste the contents of the selected gist to the
+    
