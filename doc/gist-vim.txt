@@ -131,4 +131,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     buffer from which vim-gist was called, and close the vim-gist
     listing split.
   - 'Esc' will close the vim-gist listing split without performing any
-   
+    further action.
+
+- Open the gist on brow
