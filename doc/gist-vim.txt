@@ -133,4 +133,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
   - 'Esc' will close the vim-gist listing split without performing any
     further action.
 
-- Open the gist on brow
+- Open the gist on browser after you post or update it.
+>
+    :G
