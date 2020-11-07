@@ -140,3 +140,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 <
 - Post as new gist after editing on the buffer.
 >
+    :Gist!
+<
+=============================
