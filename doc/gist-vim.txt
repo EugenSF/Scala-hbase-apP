@@ -138,4 +138,5 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist -b
     :Gist --browser
 <
-- Post as new
+- Post as new gist after editing on the buffer.
+>
