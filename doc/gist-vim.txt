@@ -135,4 +135,7 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 
 - Open the gist on browser after you post or update it.
 >
-    :G
+    :Gist -b
+    :Gist --browser
+<
+- Post as new
