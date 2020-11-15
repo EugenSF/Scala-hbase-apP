@@ -143,4 +143,6 @@ USAGE                                                 *:Gist* *vim-gist-usage*
     :Gist!
 <
 ==============================================================================
-TIPS                                     
+TIPS                                                           *vim-gist-tips*
+
+If you set "
