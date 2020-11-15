@@ -145,4 +145,4 @@ USAGE                                                 *:Gist* *vim-gist-usage*
 ==============================================================================
 TIPS                                                           *vim-gist-tips*
 
-If you set "
+If you set "g:gist_clip_command", gist.vim will copy the gist cod
