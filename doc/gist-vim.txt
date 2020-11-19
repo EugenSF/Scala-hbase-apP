@@ -148,4 +148,5 @@ TIPS                                                           *vim-gist-tips*
 If you set "g:gist_clip_command", gist.vim will copy the gist code with option
 "-c".
 
-  - Ma
+  - Mac: >
+    let g:gist_clip_comm
