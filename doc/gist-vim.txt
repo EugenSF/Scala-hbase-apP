@@ -149,4 +149,7 @@ If you set "g:gist_clip_command", gist.vim will copy the gist code with option
 "-c".
 
   - Mac: >
-    let g:gist_clip_comm
+    let g:gist_clip_command = 'pbcopy'
+<
+  - Linux: >
+    le
