@@ -152,4 +152,7 @@ If you set "g:gist_clip_command", gist.vim will copy the gist code with option
     let g:gist_clip_command = 'pbcopy'
 <
   - Linux: >
-    let g:gist_clip_command = 'xclip -selection clipb
+    let g:gist_clip_command = 'xclip -selection clipboard'
+<
+  - Others (cygwin?): >
+    let
