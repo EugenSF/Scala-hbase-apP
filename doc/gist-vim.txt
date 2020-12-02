@@ -163,3 +163,4 @@ If you want to detect filetype from the filename: >
 <
 If you want to open the browser after the post: >
 
+    let g:gist_open_browser_afte
