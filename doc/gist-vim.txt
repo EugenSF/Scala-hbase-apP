@@ -159,4 +159,6 @@ If you set "g:gist_clip_command", gist.vim will copy the gist code with option
 <
 If you want to detect filetype from the filename: >
 
-    let g:gist_detec
+    let g:gist_detect_filetype = 1
+<
+If you want t
