@@ -169,4 +169,6 @@ If you want to change the browser: >
 
     let g:gist_browser_command = 'w3m %URL%'
 <
-o
+or: >
+
+    let g:gist_browser_command = 'ope
