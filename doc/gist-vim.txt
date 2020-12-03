@@ -167,3 +167,6 @@ If you want to open the browser after the post: >
 <
 If you want to change the browser: >
 
+    let g:gist_browser_command = 'w3m %URL%'
+<
+o
