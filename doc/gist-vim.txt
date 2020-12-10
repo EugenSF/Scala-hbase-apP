@@ -171,4 +171,6 @@ If you want to change the browser: >
 <
 or: >
 
-    let g:gist_browser_command = 'ope
+    let g:gist_browser_command = 'opera %URL% &'
+<
+On windows, this shoul
