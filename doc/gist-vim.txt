@@ -173,4 +173,6 @@ or: >
 
     let g:gist_browser_command = 'opera %URL% &'
 <
-On windows, this shoul
+On windows, this should work with your user settings.
+
+If you w
