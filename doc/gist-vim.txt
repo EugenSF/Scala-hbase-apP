@@ -175,4 +175,6 @@ or: >
 <
 On windows, this should work with your user settings.
 
-If you want to show your private gists with ":G
+If you want to show your private gists with ":Gist -l": >
+
+    let g:gist_show_private
