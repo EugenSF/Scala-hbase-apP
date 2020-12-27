@@ -185,4 +185,6 @@ If you want your gist to be private by default: >
 <
 If you want your gist to be anonymous by default: >
 
-    let g:gis
+    let g:gist_post_anonymous = 1
+<
+If you want to edit
