@@ -187,4 +187,4 @@ If you want your gist to be anonymous by default: >
 
     let g:gist_post_anonymous = 1
 <
-If you want to edit
+If you want to edit all files for gists containing more t
