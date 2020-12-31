@@ -191,4 +191,6 @@ If you want to edit all files for gists containing more than one: >
 
     let g:gist_get_multiplefile = 1
 <
-If you want to use on GitHub Enterp
+If you want to use on GitHub Enterprise: >
+
+    let g:gist_api_url = 'http://your
