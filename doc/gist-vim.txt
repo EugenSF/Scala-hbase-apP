@@ -189,4 +189,6 @@ If you want your gist to be anonymous by default: >
 <
 If you want to edit all files for gists containing more than one: >
 
-    let g:gist_get_multiple
+    let g:gist_get_multiplefile = 1
+<
+If you want to use on GitHub Enterp
