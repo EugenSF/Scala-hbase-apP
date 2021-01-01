@@ -195,3 +195,4 @@ If you want to use on GitHub Enterprise: >
 
     let g:gist_api_url = 'http://your-github-enterprise-domain/api/v3'
 <
+If you want to open gist with current editing bu
