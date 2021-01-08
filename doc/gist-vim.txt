@@ -197,4 +197,6 @@ If you want to use on GitHub Enterprise: >
 <
 If you want to open gist with current editing buffers: >
 
-    let g:gist_edit_with_buffers 
+    let g:gist_edit_with_buffers = 1
+
+If you want to open gist li
