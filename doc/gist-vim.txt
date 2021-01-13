@@ -205,4 +205,4 @@ If you want to open gist list/buffer as vertical split: >
 
 If you want to list more than 30 gists per page (maximum is 100):
 
-    l
+    let g:gist_per_page_limit = 100
