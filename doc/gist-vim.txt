@@ -210,4 +210,6 @@ If you want to list more than 30 gists per page (maximum is 100):
 If you want to modify filetype for the file on github, or add mapping of
 filetype/file-extension: >
 
-    let g:gis
+    let g:gist_extmap = { ".swift": "swift" }
+<
+    key i
