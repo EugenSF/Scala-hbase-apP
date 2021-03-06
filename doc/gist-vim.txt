@@ -218,4 +218,8 @@ If you want to update a gist, embed >
 
     GistID: xxxxx
 >
-in your local f
+in your local file, then call >
+
+    :Gist
+
+The 
