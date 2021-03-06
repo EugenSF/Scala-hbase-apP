@@ -215,3 +215,7 @@ filetype/file-extension: >
     key is file-extension, value is filetype.
 
 If you want to update a gist, embed >
+
+    GistID: xxxxx
+>
+in your local f
