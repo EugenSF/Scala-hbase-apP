@@ -212,4 +212,6 @@ filetype/file-extension: >
 
     let g:gist_extmap = { ".swift": "swift" }
 <
-    key i
+    key is file-extension, value is filetype.
+
+If
