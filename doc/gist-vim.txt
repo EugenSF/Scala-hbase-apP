@@ -223,4 +223,4 @@ in your local file, then call >
     :Gist
 
 The vim-gist listing split lists gists ids, names (filenames) as well as
-their description. This is d
+their description. This is done following a table layout, with fi
