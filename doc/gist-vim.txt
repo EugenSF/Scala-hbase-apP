@@ -224,4 +224,5 @@ in your local file, then call >
 
 The vim-gist listing split lists gists ids, names (filenames) as well as
 their description. This is done following a table layout, with fixed space
-for each column. For offering quic
+for each column. For offering quick browsing, vim-gist will truncate all
+outp
