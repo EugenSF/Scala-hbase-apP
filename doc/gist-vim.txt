@@ -227,4 +227,5 @@ their description. This is done following a table layout, with fixed space
 for each column. For offering quick browsing, vim-gist will truncate all
 output exceeding the available horizontal space, assuring that every gist
 listed only takes one line on the table. Although the gist id field width is
-fixed internally, the user can define the length of the (file)na
+fixed internally, the user can define the length of the (file)name field on
+the vim-gist listing. This ca
