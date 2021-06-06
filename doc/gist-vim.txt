@@ -232,4 +232,5 @@ the vim-gist listing. This can be done by the following declaration:
 
     let g:gist_namelength = 20
 
-Note that the default value for gist_nam
+Note that the default value for gist_namelength is 30. Again, if the gist
+(fi
