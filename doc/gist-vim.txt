@@ -235,4 +235,6 @@ the vim-gist listing. This can be done by the following declaration:
 Note that the default value for gist_namelength is 30. Again, if the gist
 (file)name exceeds the specified number of characters, it will be truncated.
 
-If you want to update a gist whe
+If you want to update a gist when only |:w!|: >
+
+    " :w and :w! update a g
