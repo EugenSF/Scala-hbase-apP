@@ -237,4 +237,5 @@ Note that the default value for gist_namelength is 30. Again, if the gist
 
 If you want to update a gist when only |:w!|: >
 
-    " :w and :w! update a g
+    " :w and :w! update a gist.
+    let g:gist_update_on_write = 1
