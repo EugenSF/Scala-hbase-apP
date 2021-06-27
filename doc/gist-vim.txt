@@ -239,3 +239,6 @@ If you want to update a gist when only |:w!|: >
 
     " :w and :w! update a gist.
     let g:gist_update_on_write = 1
+
+    " Only :w! updates a gist.
+    
