@@ -244,4 +244,6 @@ If you want to update a gist when only |:w!|: >
     let g:gist_update_on_write = 2
 >
 All other values are treated as 1.
-This
+This variable's value is 1 by default.
+
+======
