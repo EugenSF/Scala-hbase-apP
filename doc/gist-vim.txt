@@ -247,4 +247,4 @@ All other values are treated as 1.
 This variable's value is 1 by default.
 
 ==============================================================================
-LICENSE                
+LICENSE                                                     *v
