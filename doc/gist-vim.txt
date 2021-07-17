@@ -250,4 +250,5 @@ This variable's value is 1 by default.
 LICENSE                                                     *vim-gist-license*
 
 
-  Copyright 2010 by Yas
+  Copyright 2010 by Yasuhiro Matsumoto
+  modification, are permitted pr
