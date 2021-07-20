@@ -251,4 +251,4 @@ LICENSE                                                     *vim-gist-license*
 
 
   Copyright 2010 by Yasuhiro Matsumoto
-  modification, are permitted pr
+  modification, are permitted provided that the following condit
