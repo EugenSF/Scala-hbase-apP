@@ -259,4 +259,4 @@ LICENSE                                                     *vim-gist-license*
      this list of conditions and the following disclaimer in the documentation
      and/or other materials provided with the distribution.
 
-  THIS SOFTWA
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
