@@ -273,4 +273,4 @@ LICENSE                                                     *vim-gist-license*
   OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ==============================================================================
-INSTALL                   
+INSTALL                                                     *vim-
