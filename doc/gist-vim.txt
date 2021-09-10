@@ -273,4 +273,6 @@ LICENSE                                                     *vim-gist-license*
   OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ==============================================================================
-INSTALL                                                     *vim-
+INSTALL                                                     *vim-gist-install*
+
+Copy following file
