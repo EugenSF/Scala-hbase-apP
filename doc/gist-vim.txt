@@ -275,4 +275,6 @@ LICENSE                                                     *vim-gist-license*
 ==============================================================================
 INSTALL                                                     *vim-gist-install*
 
-Copy following file
+Copy following files into your plugin directory.
+
+rtp:
