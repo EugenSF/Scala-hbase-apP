@@ -278,3 +278,7 @@ INSTALL                                                     *vim-gist-install*
 Copy following files into your plugin directory.
 
 rtp:
+  - autoload/gist.vim
+  - plugin/gist.vim
+
+If y
