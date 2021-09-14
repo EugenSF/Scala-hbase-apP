@@ -281,4 +281,6 @@ rtp:
   - autoload/gist.vim
   - plugin/gist.vim
 
-If you want to uninstall gist.vim, remember t
+If you want to uninstall gist.vim, remember to also remove `~/.gist-vim`.
+
+You nee
