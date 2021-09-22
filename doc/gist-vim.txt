@@ -283,4 +283,6 @@ rtp:
 
 If you want to uninstall gist.vim, remember to also remove `~/.gist-vim`.
 
-You nee
+You need to install webapi-vim also:
+
+  ht
