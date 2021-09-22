@@ -285,4 +285,4 @@ If you want to uninstall gist.vim, remember to also remove `~/.gist-vim`.
 
 You need to install webapi-vim also:
 
-  ht
+  http://www.vim.org/scripts/script.php?script
