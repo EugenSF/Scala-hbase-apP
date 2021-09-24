@@ -289,4 +289,6 @@ You need to install webapi-vim also:
 
 If you want to use latest one:
 
- 
+  https://github.com/mattn/webapi-vim
+
+===
