@@ -293,3 +293,6 @@ If you want to use latest one:
 
 ==============================================================================
 REQUIREMENTS                                           *vim-gist-requirements*
+
+  - curl command (http://curl.haxx.se/)
+  - web
