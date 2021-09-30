@@ -292,4 +292,4 @@ If you want to use latest one:
   https://github.com/mattn/webapi-vim
 
 ==============================================================================
-REQUIREMENTS                       
+REQUIREMENTS                                           *vim-gist-requirements*
