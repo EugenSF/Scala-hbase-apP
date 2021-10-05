@@ -295,4 +295,4 @@ If you want to use latest one:
 REQUIREMENTS                                           *vim-gist-requirements*
 
   - curl command (http://curl.haxx.se/)
-  - web
+  - webapi-vim (https://github.com/mattn/webapi-vi
