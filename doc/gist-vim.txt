@@ -299,4 +299,6 @@ REQUIREMENTS                                           *vim-gist-requirements*
   - and, if you want to use your git profile, the git command-line client.
 
 ==============================================================================
-SETUP                                                     
+SETUP                                                       *vim-gist-setup*
+
+This plugin uses 
