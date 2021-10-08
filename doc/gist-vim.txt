@@ -302,4 +302,4 @@ REQUIREMENTS                                           *vim-gist-requirements*
 SETUP                                                       *vim-gist-setup*
 
 This plugin uses GitHub API v3. The authentication value is stored in `~/.gist-vim`.
-vim-gist pro
+vim-gist provides two ways to authenticate agai
