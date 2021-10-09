@@ -304,4 +304,4 @@ SETUP                                                       *vim-gist-setup*
 This plugin uses GitHub API v3. The authentication value is stored in `~/.gist-vim`.
 vim-gist provides two ways to authenticate against the GitHub APIs.
 
-First, you need to se
+First, you need to set your GitHub username in global git config
