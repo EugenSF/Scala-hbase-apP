@@ -308,4 +308,5 @@ First, you need to set your GitHub username in global git config:
 >
     $ git config --global github.user Username
 <
-Then, gist.vim will ask for your passw
+Then, gist.vim will ask for your password to create an authorization when you
+fir
