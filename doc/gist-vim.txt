@@ -309,4 +309,5 @@ First, you need to set your GitHub username in global git config:
     $ git config --global github.user Username
 <
 Then, gist.vim will ask for your password to create an authorization when you
-first use it.  The password is not stored a
+first use it.  The password is not stored and only the OAuth access token will
+be kept f
