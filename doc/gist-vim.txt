@@ -314,4 +314,4 @@ be kept for later use.  You can revoke the token at any time from the list of
 "Authorized applications" on GitHub's "Account Settings" page.
 (https://github.com/settings/applications)
 
-If you have two-factor a
+If you have two-factor authentication enabled on GitHub, you'll see th
