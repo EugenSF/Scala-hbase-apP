@@ -312,4 +312,6 @@ Then, gist.vim will ask for your password to create an authorization when you
 first use it.  The password is not stored and only the OAuth access token will
 be kept for later use.  You can revoke the token at any time from the list of
 "Authorized applications" on GitHub's "Account Settings" page.
-(https://github.com/setting
+(https://github.com/settings/applications)
+
+If you have two-factor a
