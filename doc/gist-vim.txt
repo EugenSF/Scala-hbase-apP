@@ -315,4 +315,5 @@ be kept for later use.  You can revoke the token at any time from the list of
 (https://github.com/settings/applications)
 
 If you have two-factor authentication enabled on GitHub, you'll see the message
-"Must specify two-factor authentication OTP code." In this case, yo
+"Must specify two-factor authentication OTP code." In this case, you need to
+create a "Personal Access Tok
