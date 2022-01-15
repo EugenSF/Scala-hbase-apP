@@ -322,4 +322,4 @@ named ~/.gist-vim like this:
 >
     token xxxxx
 <
-If you happen to hav
+If you happen to have your password already written in ~/.gitconfig li
