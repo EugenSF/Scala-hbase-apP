@@ -320,3 +320,6 @@ create a "Personal Access Token" on GitHub's "Developer settings" page
 (https://github.com/settings/tokens) with the gist scope and place it in a file
 named ~/.gist-vim like this:
 >
+    token xxxxx
+<
+If you happen to hav
