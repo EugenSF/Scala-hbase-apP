@@ -326,4 +326,6 @@ If you happen to have your password already written in ~/.gitconfig like
 below:
 >
     [github]
-        pass
+        password = xxxxx
+<
+Then, add followi
