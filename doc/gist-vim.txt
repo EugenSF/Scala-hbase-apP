@@ -330,4 +330,6 @@ below:
 <
 Then, add following into your ~/.vimrc
 >
-    let g:gist_use_p
+    let g:gist_use_password_in_gitconfig = 1
+<
+This i
