@@ -328,4 +328,6 @@ below:
     [github]
         password = xxxxx
 <
-Then, add followi
+Then, add following into your ~/.vimrc
+>
+    let g:gist_use_p
