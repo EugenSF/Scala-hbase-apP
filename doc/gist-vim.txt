@@ -332,4 +332,4 @@ Then, add following into your ~/.vimrc
 >
     let g:gist_use_password_in_gitconfig = 1
 <
-This i
+This is not secure at all, so strongly discouraged.
