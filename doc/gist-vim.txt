@@ -339,4 +339,5 @@ NOTE: the username is optional if you only send anonymous gists.
 ==============================================================================
 FAQ                                                           *vim-gist-faq*
 
-Q. :Gist returns a Forbidden
+Q. :Gist returns a Forbidden error
+A. Try deleting ~/.gist-vim and au
