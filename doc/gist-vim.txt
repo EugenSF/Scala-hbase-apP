@@ -349,4 +349,6 @@ THANKS                                                     *vim-gist-thanks*
   Bruno Bigras
   c9s
   Daniel Bretoi
-  Jer
+  Jeremy Michael Cantrell
+  Kien N
+  kongo20
