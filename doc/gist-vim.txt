@@ -345,4 +345,8 @@ A. Try deleting ~/.gist-vim and authenticating again.
 ==============================================================================
 THANKS                                                     *vim-gist-thanks*
 
-  AD7si
+  AD7six
+  Bruno Bigras
+  c9s
+  Daniel Bretoi
+  Jer
