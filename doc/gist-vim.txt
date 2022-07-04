@@ -343,4 +343,6 @@ Q. :Gist returns a Forbidden error
 A. Try deleting ~/.gist-vim and authenticating again.
 
 ==============================================================================
-THANKS                                       
+THANKS                                                     *vim-gist-thanks*
+
+  AD7si
