@@ -354,3 +354,8 @@ THANKS                                                     *vim-gist-thanks*
   kongo2002
   MATSUU Takuto
   Matthew Weier O'Phinney
+  ornicar
+  Roland Schilter
+  steve
+  tyru
+ 
