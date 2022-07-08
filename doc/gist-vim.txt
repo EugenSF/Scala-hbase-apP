@@ -351,4 +351,6 @@ THANKS                                                     *vim-gist-thanks*
   Daniel Bretoi
   Jeremy Michael Cantrell
   Kien N
-  kongo20
+  kongo2002
+  MATSUU Takuto
+  Matthew Weier O'Phinney
