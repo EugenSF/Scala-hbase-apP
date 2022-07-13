@@ -358,4 +358,7 @@ THANKS                                                     *vim-gist-thanks*
   Roland Schilter
   steve
   tyru
- 
+  Will Gray
+  netj
+
+ vim:tw=78:ts=8:ft=help:norl:
