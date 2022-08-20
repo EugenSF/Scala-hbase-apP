@@ -11,4 +11,5 @@ if &compatible || (exists('g:loaded_gist_vim') && g:loaded_gist_vim)
 endif
 let g:loaded_gist_vim = 1
 
-function! s:CompleteAr
+function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
+    return filter
