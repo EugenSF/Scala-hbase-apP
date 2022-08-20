@@ -9,4 +9,6 @@
 if &compatible || (exists('g:loaded_gist_vim') && g:loaded_gist_vim)
   finish
 endif
-let g:
+let g:loaded_gist_vim = 1
+
+function! s:CompleteAr
