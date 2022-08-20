@@ -4,4 +4,6 @@
 " WebPage: http://github.com/mattn/vim-gist
 " License: BSD
 " GetLatestVimScripts: 2423 1 :AutoInstall: gist.vim
-" script type: pl
+" script type: plugin
+
+if &compatible || (exists('g:loaded_gist_vim') 
