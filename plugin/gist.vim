@@ -12,4 +12,4 @@ endif
 let g:loaded_gist_vim = 1
 
 function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
-    return filter
+    return filter(copy(["-p", "-P", "-a", "-m", "-e", "-s",
