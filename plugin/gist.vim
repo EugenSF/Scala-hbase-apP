@@ -15,4 +15,5 @@ function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
     return filter(copy(["-p", "-P", "-a", "-m", "-e", "-s", "-d", "+1", "-1", "-f", "-c", "-l", "-la", "-ls", "-b", "-n",
                 \ "--listall", "--liststar", "--list", "--multibuffer", "--private", "--public", "--anonymous", "--description", "--clipboard",
                 \ "--rawurl", "--delete", "--edit", "--star", "--unstar", "--fork", "--browser", "--per-page"
-                \ ]), 'stridx(v
+                \ ]), 'stridx(v:val, a:arg_lead)==0')
+endfunctio
