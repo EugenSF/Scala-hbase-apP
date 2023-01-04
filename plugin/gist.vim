@@ -16,4 +16,6 @@ function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
                 \ "--listall", "--liststar", "--list", "--multibuffer", "--private", "--public", "--anonymous", "--description", "--clipboard",
                 \ "--rawurl", "--delete", "--edit", "--star", "--unstar", "--fork", "--browser", "--per-page"
                 \ ]), 'stridx(v:val, a:arg_lead)==0')
-endfunctio
+endfunction
+
+let g:gist_per_page_limit = get(g:, 'g
