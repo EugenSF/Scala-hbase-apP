@@ -18,4 +18,5 @@ function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
                 \ ]), 'stridx(v:val, a:arg_lead)==0')
 endfunction
 
-let g:gist_per_page_limit = get(g:, 'g
+let g:gist_per_page_limit = get(g:, 'gist_per_page_limit', 30)
+command! -nargs=? -range=% -bang 
