@@ -19,4 +19,6 @@ function! s:CompleteArgs(arg_lead,cmdline,cursor_pos)
 endfunction
 
 let g:gist_per_page_limit = get(g:, 'gist_per_page_limit', 30)
-command! -nargs=? -range=% -bang -complete=customlist,s:CompleteArgs Gist :call gist#Gist(<count>, "<bang>", <line1
+command! -nargs=? -range=% -bang -complete=customlist,s:CompleteArgs Gist :call gist#Gist(<count>, "<bang>", <line1>, <line2>, <f-args>)
+
+" vim:set et:
